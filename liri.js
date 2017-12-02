@@ -90,7 +90,6 @@ function findMovie(){
 		if(error){
 			console.log(error);
 		} else {
-			console.log(body);
 			console.log("Title: " + JSON.parse(body)["Title"]);
 	        console.log("Year: " + JSON.parse(body)["Year"]);
 	        console.log("IMDB Rating: " + JSON.parse(body)["imdbRating"]);
