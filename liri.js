@@ -57,6 +57,10 @@ function findSong(){
 	} else {
 		music = yourRequest;
 	} 
+	var newSpotify = new Spotify({
+		id: '36e099e2b49142e8b6de9aaf46eb08ea',
+		secret: 'b453fd6c883544a6ab254120ecba0144' 
+	})
 	spotify.search({type:'track', query:searchTrack}, function(err,data){
 	    if(err){
 	        console.log('Error occurred: ' + err);
