@@ -31,17 +31,12 @@ function menu(){
 }
 
 function fetchTweet(){
-	var client = new getliri.twitterkeys({
-		consumer_key: '<input here>',
-		consumer_secret: '<input here>'
-		access_token_key: '<input here>';
-		access_token_secret: '<input here>',
-	});
-
-	var requirements {
-		name : 
+	var client = new twitter(getliri);
+	var requirements = {
+		name : 'Jessica97632269',
 		numtweets : 20
 	}
+
 
 	client.get('statuses/user_timeline', requirements, function(error, tweets, response){
 		if (!error) {
@@ -83,10 +78,11 @@ function findMovie(){
 	} else {
 		movie = yourRequest;
 	}
-	request(url, function(error, response, body)){
+	var url = 'http://www.omdbapi.com/?t=' + movie +'&y=&plot=long&tomatoes=true&r=json';
+	request(url, function(error, response, body){
 		if(!error && response.statusCode === 200){
 			console.log("Title: " + JSON.parse(body)["Title"]);
-	        console.log("Year: " + JSO N.parse(body)["Year"]);
+	        console.log("Year: " + JSON.parse(body)["Year"]);
 	        console.log("IMDB Rating: " + JSON.parse(body)["imdbRating"]);
 	        console.log("Country: " + JSON.parse(body)["Country"]);
 	        console.log("Language: " + JSON.parse(body)["Language"]);
@@ -95,12 +91,12 @@ function findMovie(){
 	        console.log("Rotten Tomatoes Rating: " + JSON.parse(body)["tomatoRating"]);
 	        console.log("Rotten Tomatoes URL: " + JSON.parse(body)["tomatoURL"]);
 		}
-	}
+	});
 }
 
 function doThis(){
 	console.log("Looking at random.txt.");
-	fs.readFile("random.txt", "utf8", function(error, data)) {
+	fs.readFile("random.txt", "utf8", function(error, data) {
 		if(error){
 			console.log(error);
 		} else {
@@ -112,7 +108,7 @@ function doThis(){
 			}
 			menu(); //after extracting data from random.txt, call menu function again
 		}
-	}
+	});
 };
 
 menu(); //calling main switch function
