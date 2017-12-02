@@ -1,6 +1,7 @@
 var getliri = require('./keys.js');
 var twitter = require("twitter");
-var spotify= require("spotify");
+var Spotify= require("node-spotify-api");
+var spotify2 = require("spotify");
 var request = require("request");
 var fs = require('fs');
 
@@ -52,16 +53,18 @@ function fetchTweet(){
 function findSong(){
 	console.log("");
 	var music;
-	if(yourRequest === "undefined"){
+
+	if(yourRequest === undefined){
 		music = "What's My Age Again?";
 	} else {
 		music = yourRequest;
 	} 
-	var newSpotify = new Spotify({
+	var spotify = new Spotify({
 		id: '36e099e2b49142e8b6de9aaf46eb08ea',
 		secret: 'b453fd6c883544a6ab254120ecba0144' 
 	})
-	spotify.search({type:'track', query:searchTrack}, function(err,data){
+
+	spotify.search({type:'track', query: music}, function(err,data){
 	    if(err){
 	        console.log('Error occurred: ' + err);
 	        return;
@@ -77,14 +80,15 @@ function findSong(){
 
 function findMovie(){
 	var movie;
-	if(yourRequest === "undefined"){
+	if(yourRequest === undefined){
 		movie = "Mr. Nobody";
 	} else {
 		movie = yourRequest;
 	}
-	var url = 'http://www.omdbapi.com/?t=' + movie +'&y=&plot=long&tomatoes=true&r=json';
+	var url = 'http://www.omdbapi.com/?APIkey=[c33ea8ba]&t=' + movie +'&y=&plot=long&tomatoes=true&r=json';
 	request(url, function(error, response, body){
 		if(!error && response.statusCode === 200){
+			console.log(body);
 			console.log("Title: " + JSON.parse(body)["Title"]);
 	        console.log("Year: " + JSON.parse(body)["Year"]);
 	        console.log("IMDB Rating: " + JSON.parse(body)["imdbRating"]);
