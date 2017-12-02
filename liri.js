@@ -85,9 +85,11 @@ function findMovie(){
 	} else {
 		movie = yourRequest;
 	}
-	var url = 'http://www.omdbapi.com/?APIkey=[c33ea8ba]&t=' + movie +'&y=&plot=long&tomatoes=true&r=json';
+	var url = 'http://www.omdbapi.com/?&t=' + movie +'&y=&plot=long&tomatoes=true&r=json&apikey=40e9cece';
 	request(url, function(error, response, body){
-		if(!error && response.statusCode === 200){
+		if(error){
+			console.log(error);
+		} else {
 			console.log(body);
 			console.log("Title: " + JSON.parse(body)["Title"]);
 	        console.log("Year: " + JSON.parse(body)["Year"]);
